@@ -1,17 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybouyzem <ybouyzem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 00:05:41 by ybouyzem          #+#    #+#             */
-/*   Updated: 2024/03/25 14:29:47 by ybouyzem         ###   ########.fr       */
+/*   Created: 2024/03/23 15:44:19 by ybouyzem          #+#    #+#             */
+/*   Updated: 2024/03/25 14:29:11 by ybouyzem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minitalk_bonus.h"
 
-#include "minitalk.h"
+void ft_sent(int signal)
+{
+	if (signal == SIGUSR1)
+		write(1, "Message sent successfuly!\n", 26);
+}
 
 void ft_error(char *pid)
 {
@@ -77,6 +82,7 @@ int	main(int argc, char **argv)
 		pid = ft_atoi(argv[1]);
 		if (pid <= 0)
 			ft_error(argv[1]);
+		signal(SIGUSR1, ft_sent);
 		while (argv[2][i] != 0)
 		{
 			ft_send_char(argv[1], argv[2][i]);

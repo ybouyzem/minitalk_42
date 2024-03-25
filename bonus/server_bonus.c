@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybouyzem <ybouyzem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 00:34:01 by ybouyzem          #+#    #+#             */
-/*   Updated: 2024/03/23 15:49:50 by ybouyzem         ###   ########.fr       */
+/*   Created: 2024/03/23 15:50:11 by ybouyzem          #+#    #+#             */
+/*   Updated: 2024/03/25 14:25:55 by ybouyzem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void ft_handle_signal(int signo, siginfo_t *info, void *s)
 {
@@ -33,7 +33,10 @@ void ft_handle_signal(int signo, siginfo_t *info, void *s)
         received_char |= (1 << bit_position);
     bit_position++;
     if (bit_position == 8) {
-        write(1, &received_char, 1);
+        if (received_char != '\0')
+            write(1, &received_char, 1);
+        else
+            kill(info->si_pid, SIGUSR1);
         received_char = 0;
         bit_position = 0;
     }
@@ -56,4 +59,3 @@ int main(void)
         pause();
     return (0);
 }
-
