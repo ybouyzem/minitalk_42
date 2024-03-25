@@ -6,19 +6,19 @@
 /*   By: ybouyzem <ybouyzem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:44:19 by ybouyzem          #+#    #+#             */
-/*   Updated: 2024/03/25 14:29:11 by ybouyzem         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:53:26 by ybouyzem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-void ft_sent(int signal)
+void	ft_sent(int signal)
 {
 	if (signal == SIGUSR1)
 		write(1, "Message sent successfuly!\n", 26);
 }
 
-void ft_error(char *pid)
+void	ft_error(char *pid)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ void	check_parssing(char *str)
 	int	i;
 
 	i = 0;
-	if(str[i] == '-')
+	if (str[i] == '-')
 		i++;
 	else if ((!ft_isdigit(str[i]) || str[i] == '+'))
 		ft_error(str);
@@ -49,36 +49,39 @@ void	check_parssing(char *str)
 	}
 }
 
-void ft_send_char(char *p, char c) {
-    int i = 0;
+void	ft_send_char(char *p, char c)
+{
+	int	i;
+	int	pid;
 
-	int pid;
+	i = 0;
 	pid = ft_atoi(p);
-    while (i < 8) {
-        if ((c >> i) & 1)
+	while (i < 8)
+	{
+		if ((c >> i) & 1)
 		{
-            if (kill(pid, SIGUSR1) == -1)
+			if (kill(pid, SIGUSR1) == -1)
 				ft_error(p);
-        } 
-		else 
+		}
+		else
 		{
-            if (kill(pid, SIGUSR2) == -1)
+			if (kill(pid, SIGUSR2) == -1)
 				ft_error(p);
-        }
+		}
 		usleep(450);
-        i++;
-    }
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	int	pid;
-	int i;
+	int	i;
 
 	i = 0;
 	if (argc == 3)
 	{
-		check_parssing(argv[1]);	
+		check_parssing(argv[1]);
 		pid = ft_atoi(argv[1]);
 		if (pid <= 0)
 			ft_error(argv[1]);
