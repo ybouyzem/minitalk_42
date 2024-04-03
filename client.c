@@ -6,7 +6,7 @@
 /*   By: ybouyzem <ybouyzem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:05:41 by ybouyzem          #+#    #+#             */
-/*   Updated: 2024/03/25 14:38:53 by ybouyzem         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:54:08 by ybouyzem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_error(char *pid)
 		i++;
 	}
 	write(2, "\n", 1);
+	exit(1);
 }
 
 void	check_parssing(char *str)
@@ -38,7 +39,9 @@ void	check_parssing(char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
+		{
 			ft_error(str);
+		}
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ybouyzem <ybouyzem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:47:11 by ybouyzem          #+#    #+#             */
-/*   Updated: 2024/03/25 14:58:37 by ybouyzem         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:55:15 by ybouyzem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define MINITALK_BONUS_H
 
 # include "unistd.h"
-# include "signal.h" 
+# include "signal.h"
+# include "stdlib.h" 
 
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);

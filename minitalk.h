@@ -6,7 +6,7 @@
 /*   By: ybouyzem <ybouyzem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 00:06:35 by ybouyzem          #+#    #+#             */
-/*   Updated: 2024/03/25 14:46:02 by ybouyzem         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:51:54 by ybouyzem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <signal.h> 
+# include <stdlib.h>
 
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
